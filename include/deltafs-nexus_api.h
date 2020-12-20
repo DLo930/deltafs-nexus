@@ -106,6 +106,20 @@ int nexus_global_rank(nexus_ctx_t nctx);
 int nexus_global_size(nexus_ctx_t nctx);
 
 /**
+ * Return node id of this process (assumes nexus is up)
+ * @param nctx context
+ * @return node id
+ */
+int nexus_node_id(nexus_ctx_t nctx);
+
+/**
+ * Return number of nodes (assumes nexus is up)
+ * @param nctx context
+ * @return number of nodes
+ */
+int nexus_total_nodes(nexus_ctx_t nctx);
+
+/**
  * Blocks until all processes in the local communicator have reached this
  * routine.
  * @param nctx context
@@ -126,6 +140,30 @@ int nexus_local_rank(nexus_ctx_t nctx);
  * @return size of the global communicator
  */
 int nexus_local_size(nexus_ctx_t nctx);
+
+/**
+ * Return global rank given a local rank (assumes nexus is up)
+ * @param nctx context
+ * @param lrank local rank
+ * @return global rank of the given local rank
+ */
+int nexus_local2global(nexus_ctx_t nctx, int lrank);
+
+/**
+ * Return node id given a global rank (assumes nexus is up)
+ * @param nctx context
+ * @param grank global rank
+ * @return node id of the given global rank
+ */
+int nexus_rank2node(nexus_ctx_t nctx, int grank);
+
+/**
+ * Return global rank of a given node's rep (assumes nexus is up)
+ * @param nctx context
+ * @param nodeid node id
+ * @return global rank of the given node
+ */
+int nexus_node2rep(nexus_ctx_t nctx, int nodeid);
 
 /**
  * Sets the global rank of the process (for debug purposes)

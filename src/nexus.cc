@@ -241,6 +241,16 @@ int nexus_global_size(nexus_ctx_t nctx) {
   return nctx->gsize;
 }
 
+int nexus_node_id(nexus_ctx_t nctx) {
+  assert(nctx != NULL);
+  return nctx->nodeid;
+}
+
+int nexus_total_nodes(nexus_ctx_t nctx) {
+  assert(nctx != NULL);
+  return nctx->nnodes;
+}
+
 nexus_ret_t nexus_local_barrier(nexus_ctx_t nctx) {
   assert(nctx != NULL);
   int rv = MPI_Barrier(nctx->localcomm);
@@ -256,6 +266,21 @@ int nexus_local_rank(nexus_ctx_t nctx) {
 int nexus_local_size(nexus_ctx_t nctx) {
   assert(nctx != NULL);
   return nctx->lsize;
+}
+
+int nexus_local2global(nexus_ctx_t nctx, int lrank) {
+  assert(nctx != NULL);
+  return nctx-> local2global[lrank];
+}
+
+int nexus_rank2node(nexus_ctx_t nctx, int grank) {
+  assert(nctx != NULL);
+  return nctx->rank2node[grank];
+}
+
+int nexus_node2rep(nexus_ctx_t nctx, int nodeid) {
+  assert(nctx != NULL);
+  return nctx-> node2rep[nodeid];
 }
 
 nexus_ret_t nexus_set_grank(nexus_ctx_t nctx, int rank) {
